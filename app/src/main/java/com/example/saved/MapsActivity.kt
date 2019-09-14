@@ -1,20 +1,15 @@
 package com.example.saved
 
-import android.app.PendingIntent.getActivity
 import android.content.Context
+import android.content.Intent
 import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.*
 
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
 
@@ -26,6 +21,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         options.compassEnabled(false)
             .rotateGesturesEnabled(false)
             .tiltGesturesEnabled(false)
+            .zoomControlsEnabled(true)
         val mapFragment = MapFragment.newInstance(options)
         val fragmentTransaction = getFragmentManager().beginTransaction()
         fragmentTransaction.add(R.id.map, mapFragment)
@@ -33,10 +29,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int, color: Int): BitmapDescriptor? {
         return ContextCompat.getDrawable(context, vectorResId)?.run {
             setBounds(0, 0, intrinsicWidth, intrinsicHeight)
-            setColorFilter(PorterDuffColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP))
+            setColorFilter(PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP))
             val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
             draw(Canvas(bitmap))
             BitmapDescriptorFactory.fromBitmap(bitmap)
@@ -58,7 +54,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney").icon(bitmapDescriptorFromVector(this, R.drawable.ic_album_black_24dp)).anchor(0.5f, 0.5f))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        addMarker(sydney, Color.BLUE)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 0f))
+        mMap.setOnMarkerClickListener(this)
+    }
+
+    fun addMarker(where: LatLng, color: Int) {
+        mMap.addMarker(MarkerOptions().position(where).icon(bitmapDescriptorFromVector(this, R.drawable.ic_album_black_24dp, color)).anchor(0.5f, 0.5f))
+    }
+
+    override fun onMarkerClick(marker: Marker?): Boolean {
+        val intent = Intent(this, DetailActivity::class.java)
+        startActivity(intent)
+        return true
     }
 }
