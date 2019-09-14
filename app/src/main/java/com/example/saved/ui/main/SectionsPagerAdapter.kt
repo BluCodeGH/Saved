@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.saved.R
 
 private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2
+    "Details",
+    "Live Posts"
 )
 
 /**
@@ -20,12 +20,16 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1)
+        // Return a InfoFragment (defined as a static inner class below).
+        if (position == 0) {
+            return InfoFragment()
+        } else {
+            return TweetFragment()
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return context.resources.getString(TAB_TITLES[position])
+        return TAB_TITLES[position]
     }
 
     override fun getCount(): Int {
