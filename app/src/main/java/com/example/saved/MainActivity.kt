@@ -24,14 +24,22 @@ class MainActivity : AppCompatActivity() {
         var email = findViewById<EditText>(R.id.email).text.toString()
         var password = findViewById<EditText>(R.id.password).text.toString()
 
-        val intent = Intent(this, MapsActivity::class.java)
-        auth.createUserWithEmailAndPassword(email, password)
+        if (auth.currentUser != null) {
+            val randomIntent = Intent(this, MapsActivity::class.java)
+            startActivity(randomIntent)
+
+        }
+
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
 
                     // Sign in success, update UI with the signed-in user's information
 //                    Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
+
+                    val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)
                     /* updateUI(user) */
                 } else {
                     // If sign in fails, display a message to the user.
@@ -43,8 +51,6 @@ class MainActivity : AppCompatActivity() {
 
                 // ...
             }
-
-        startActivity(intent)
 
     }
 

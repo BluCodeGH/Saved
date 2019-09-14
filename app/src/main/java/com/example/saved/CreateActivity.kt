@@ -33,7 +33,7 @@ class CreateActivity : AppCompatActivity() {
                     startActivity(intentGood)
                 } else {
                     // If sign in fails, display a message to the user.
-//                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Log.e("ME", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                     val intentBad = Intent(this, MainActivity::class.java)
