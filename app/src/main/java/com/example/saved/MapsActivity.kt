@@ -1,13 +1,26 @@
 package com.example.saved
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
+import java.security.AccessController.getContext
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -52,10 +65,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        addMarker(sydney, Color.BLUE)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 0f))
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference()
+        myRef.child("incidents").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for (child in dataSnapshot.getChildren()) {
+                    val lat = child.child("lat").getValue() as Double
+                    val long = child.child("long").getValue() as Double
+                    val type = child.child("type").getValue() as String
+
+                    Log.d("ME", type)
+
+                    val color = when (type) {
+                        "earthquake" -> Color.GREEN
+                        "fire" -> Color.RED
+                        "hurricane" -> Color.BLUE
+                        "tornado" -> Color.WHITE
+                        else -> Color.BLACK
+                    }
+
+                    addMarker(LatLng(lat, long), color)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w("ME", "Failed to read value.", error.toException())
+            }
+        })
+
         mMap.setOnMarkerClickListener(this)
     }
 
@@ -64,7 +104,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     }
 
     override fun onMarkerClick(marker: Marker?): Boolean {
-        val intent = Intent(this, DetailActivity::class.java)
+        //val intent = Intent(this, DetailActivity::class.java)
+        val intent = Intent(this, SubscribeActivity::class.java)
         startActivity(intent)
         return true
     }
