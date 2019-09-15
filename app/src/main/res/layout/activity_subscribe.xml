@@ -5,14 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whitess"
-    tools:context=".SubscribeActivity">
+    tools:context=".SubscribeActivity" >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="286dp"
+        android:layout_height="259dp"
+        android:text="Pick Locations to Follow:"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#ffffff"
+        android:textSize="50sp"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_border_edittext"
         android:ems="10"
+        android:textAlignment="center"
         android:hint="Location"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/buttonsub"
@@ -21,25 +37,35 @@
 
     <Button
         android:id="@+id/buttonsub"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:onClick="sub"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="20dp"
         android:text="Subscribe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonunsub"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
 
     <Button
         android:id="@+id/buttonunsub"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:onClick="unsub"
         android:text="Unsubscribe"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonsub"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
 </androidx.constraintlayout.widget.ConstraintLayout>
