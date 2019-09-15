@@ -61,7 +61,7 @@ RecyclerView.Adapter<TweetAdapter.MyViewHolder>() {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 val feed = dataSnapshot.getValue() as String;
-                holder.view.findViewById<TextView>(R.id.body).text = feed
+                holder.view.findViewById<TextView>(R.id.body).text = feed.substring(2, feed.length-1)
             }
 
             override fun onCancelled(error: DatabaseError) {
