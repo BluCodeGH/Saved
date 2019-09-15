@@ -25,7 +25,6 @@
         android:id="@+id/donation"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_border_edittext"
@@ -34,9 +33,27 @@
         android:inputType="number"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintEnd_toStartOf="@+id/currency"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <EditText
+        android:id="@+id/currency"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_border_edittext"
+        android:ems="10"
+        android:hint="CAD"
+        android:inputType="textShortMessage|textCapCharacters"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/donation"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -54,15 +71,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/donation" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="74dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="324dp"
-        android:layout_marginEnd="80dp"
-        android:spinnerMode="dropdown"
-
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

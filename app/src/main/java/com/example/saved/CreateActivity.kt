@@ -24,6 +24,12 @@ class CreateActivity : AppCompatActivity() {
     fun accountCreate (view: View) {
         var email = findViewById<EditText>(R.id.email).text.toString()
         var password = findViewById<EditText>(R.id.password).text.toString()
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(baseContext, "Authentication failed.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
 //        val intent = Intent(this, MapsActivity::class.java)
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->

@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".DonateActivity"></activity>
-        <activity android:name=".CreateActivity" />
+        <activity android:name=".CreateActivity" android:windowSoftInputMode="stateVisible|adjustResize"/>
         <activity
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail"
@@ -44,14 +44,14 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SubscribeActivity" />
+        <activity android:name=".SubscribeActivity"  android:windowSoftInputMode="stateVisible|adjustResize"/>
         <!--
 Set custom default icon. This is used when no icon is set for incoming notification messages.
      See README(https://goo.gl/l4GJaQ) for more.

@@ -1,5 +1,6 @@
 package com.example.saved
 
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import android.widget.TextView
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class DonateActivity : AppCompatActivity() {
 
@@ -36,6 +44,7 @@ class DonateActivity : AppCompatActivity() {
 
             spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    (view as TextView).text = personNames[position]
                     Toast.makeText(this@DonateActivity, getString(R.string.selected_item) + " " + personNames[position], Toast.LENGTH_SHORT).show()
                 }
 
@@ -61,9 +70,21 @@ class DonateActivity : AppCompatActivity() {
             }
         }
         // Instantiate the RequestQueue.
-        val amnt = findViewById<EditText>(R.id.donation).text.toString().toDouble()
+        val amntStr = findViewById<EditText>(R.id.donation).text.toString()
+        if (amntStr.isEmpty()) {
+            Toast.makeText(baseContext, "Invalid amount.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
+        val amnt = amntStr.toDouble()
+        val from = findViewById<EditText>(R.id.currency).text.toString()
+        if (from.isEmpty()) {
+            Toast.makeText(baseContext, "Invalid Currency.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
         val queue = Volley.newRequestQueue(this)
-        val url = "http://35.226.38.9:3389/convert/cad/usd"
+        val url = "http://35.226.38.9:3389/convert/$from/usd"
         Log.d("ME", url)
 
         // Request a string response from the provided URL.
@@ -80,5 +101,8 @@ class DonateActivity : AppCompatActivity() {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
+
+        val intent = Intent(this, MapsActivity::class.java)
+        startActivity(intent)
     }
 }

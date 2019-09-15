@@ -51,7 +51,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         fragmentTransaction.commit()
         mapFragment.getMapAsync(this)
 
-        val personNames = arrayOf("Earthquake(Green)", "Explosion(Yellow)", "Fire(Red)", "Floods(Cyan)", "Terrorism(Black)", "Typhoon(Blue)", "Crash(Magenta)")
+        val personNames = arrayOf("Earthquake (Green)", "Explosion (Yellow)", "Fire (Red)", "Floods (Cyan)", "Terrorism (Black)", "Typhoon (Blue)", "Crash (Magenta)")
         val spinner = findViewById<Spinner>(R.id.spinner)
 
         if (spinner != null) {
@@ -136,6 +136,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         mMap.setOnMarkerClickListener(this)
         mMap.setPadding(0, 0, 200, 0)
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(LatLng(43.46, -80.52)))
     }
 
     fun addMarker(where: LatLng, color: Int, id: String) {
