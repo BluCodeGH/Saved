@@ -39,6 +39,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         setContentView(R.layout.activity_maps)
         if (supportActionBar != null)
             supportActionBar?.hide()
+
+        val options = GoogleMapOptions()
+        options.compassEnabled(false)
+            .rotateGesturesEnabled(false)
+            .tiltGesturesEnabled(false)
+            .zoomControlsEnabled(true)
+        val mapFragment = MapFragment.newInstance(options)
+        val fragmentTransaction = getFragmentManager().beginTransaction()
+        fragmentTransaction.add(R.id.map, mapFragment)
+        fragmentTransaction.commit()
+        mapFragment.getMapAsync(this)
+
         val personNames = arrayOf("+", "Earthquake(Green)", "Explosion(Yellow)", "Fire(Red)", "Floods(Cyan)", "Terrorism(Black)", "Typhoon(Blue)", "Crash(Magenta)")
         val spinner = findViewById<Spinner>(R.id.spinner)
 
@@ -65,17 +77,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
             }
         }
-
-        val options = GoogleMapOptions()
-        options.compassEnabled(false)
-            .rotateGesturesEnabled(false)
-            .tiltGesturesEnabled(false)
-            .zoomControlsEnabled(true)
-        val mapFragment = MapFragment.newInstance(options)
-        val fragmentTransaction = getFragmentManager().beginTransaction()
-        fragmentTransaction.add(R.id.map, mapFragment)
-        fragmentTransaction.commit()
-        mapFragment.getMapAsync(this)
     }
 
     private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int, color: Int): BitmapDescriptor? {
