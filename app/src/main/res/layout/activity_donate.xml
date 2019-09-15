@@ -43,15 +43,14 @@
         android:id="@+id/button2"
         android:layout_width="300dp"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttonshape"
         android:onClick="donate"
         android:text="Confirm"
-        android:textSize="20sp"
         android:textColor="#ffffff"
-        android:background="@drawable/buttonshape"
-        android:layout_marginTop="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donation"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/donation" />
 </androidx.constraintlayout.widget.ConstraintLayout>
