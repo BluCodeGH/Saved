@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whitess"
     tools:context=".DonateActivity">
 
     <TextView
@@ -12,33 +13,45 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Amount to Donate"
-        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/donation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <EditText
         android:id="@+id/donation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:inputType="number"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="Amount ($$)"
+        android:background="@drawable/rounded_border_edittext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:onClick="donate"
         android:text="Confirm"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/donation" />
+        app:layout_constraintTop_toBottomOf="@+id/donation"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
