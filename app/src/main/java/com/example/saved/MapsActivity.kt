@@ -68,7 +68,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                     position: Int,
                     id: Long
                 ) {
-                    
+
                 }
 
             }

@@ -15,6 +15,11 @@ import org.json.JSONObject
 import java.math.BigDecimal
 import java.math.BigInteger
 
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+
 class DonateActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +27,26 @@ class DonateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_donate)
         if (supportActionBar != null)
             supportActionBar?.hide()
+
+        val personNames = arrayOf("CAD", "USD", "CHF", "EUR", "JPY", "AUD", "YEN")
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        if (spinner != null) {
+            val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, personNames)
+            spinner.adapter = arrayAdapter
+
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    Toast.makeText(this@DonateActivity, getString(R.string.selected_item) + " " + personNames[position], Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // Code to perform some action when nothing is selected
+                }
+            }
+        }
     }
+
+
 
     fun donate(view: View) {
         class transfer() : AsyncTask<Double, Void, String>() {
