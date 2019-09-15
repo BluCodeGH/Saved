@@ -31,9 +31,10 @@ class TweetFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_tweet, container, false)
+        val id = arguments?.getString("id") as String
 
         viewManager = LinearLayoutManager(getContext())
-        viewAdapter = TweetAdapter()
+        viewAdapter = TweetAdapter(id)
 
         recyclerView = rootView.findViewById<RecyclerView>(R.id.tweetrecycler).apply {
             // use a linear layout manager
