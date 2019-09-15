@@ -13,6 +13,8 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        if (supportActionBar != null)
+            supportActionBar?.hide()
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         sectionsPagerAdapter.id = getIntent().getStringExtra("MARKER")
         val viewPager: ViewPager = findViewById(R.id.view_pager)

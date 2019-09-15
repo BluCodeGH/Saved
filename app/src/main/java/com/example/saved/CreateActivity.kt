@@ -16,6 +16,8 @@ class CreateActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
+        if (supportActionBar != null)
+            supportActionBar?.hide()
     }
 
 
