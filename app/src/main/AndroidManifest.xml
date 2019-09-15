@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.saved">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -15,8 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateActivity"></activity>
+        <meta-data
+            android:name="com.google.android.actions" />
+<!--            android:resource="@xml/shape" />-->
 
+
+        <activity android:name=".CreateActivity" />
         <activity
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail"
@@ -51,7 +56,7 @@
         <!--
 Set custom default icon. This is used when no icon is set for incoming notification messages.
      See README(https://goo.gl/l4GJaQ) for more.
--->
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_album_black_24dp" />
@@ -73,7 +78,6 @@ Set custom default icon. This is used when no icon is set for incoming notificat
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
