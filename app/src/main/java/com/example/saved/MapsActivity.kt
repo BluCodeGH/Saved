@@ -51,7 +51,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         fragmentTransaction.commit()
         mapFragment.getMapAsync(this)
 
-        val personNames = arrayOf("+", "Earthquake(Green)", "Explosion(Yellow)", "Fire(Red)", "Floods(Cyan)", "Terrorism(Black)", "Typhoon(Blue)", "Crash(Magenta)")
+        val personNames = arrayOf("Earthquake(Green)", "Explosion(Yellow)", "Fire(Red)", "Floods(Cyan)", "Terrorism(Black)", "Typhoon(Blue)", "Crash(Magenta)")
         val spinner = findViewById<Spinner>(R.id.spinner)
 
         if (spinner != null) {
@@ -68,11 +68,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                     position: Int,
                     id: Long
                 ) {
-                    Toast.makeText(
-                        this@MapsActivity,
-                        getString(R.string.selected_item) + " " + personNames[position],
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    
                 }
 
             }
