@@ -69,7 +69,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference()
-      /*  myRef.child("incidents").addValueEventListener(object : ValueEventListener {
+        myRef.child("incidents").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
@@ -98,8 +98,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 // Failed to read value
                 Log.w("ME", "Failed to read value.", error.toException())
             }
-        })*/
-        addMarker(LatLng(0.0, 0.0), Color.BLUE, "0")
+        })
 
         mMap.setOnMarkerClickListener(this)
         mMap.setPadding(0, 0, 200, 0)
@@ -110,21 +109,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     }
 
     override fun onMarkerClick(marker: Marker?): Boolean {
-        //val intent = Intent(this, DetailActivity::class.java)
-        //intent.putExtra("MARKER", marker?.getTag() as String)
-        //startActivity(intent)
-        class getBalance() : AsyncTask<Void, Void, String>() {
-            override fun doInBackground(vararg params: Void?): String? {
-                val proj = Project.at("G0mLtXJAP_7fxN-IKCb5IuG1jEBYduM5zgRSdkqXkQk", "ywG25A0hNrO6zFd+Gc2Rf5XONsIx0B+IF92dhFRRQaIB4GX7gqfzLziCh76Rq1Z")
-                val inputs = JSONObject()
-                inputs.put("_to", "0xd06fb1891a51cc3f16cccc289cbf9ce347386809")
-                inputs.put("_value", (500*1e18).toInt().toString(16))
-                val out = proj.post("/transfer", inputs)
-                Log.d("ME", out.toString())
-                return null
-            }
-        }
-        getBalance().execute()
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("MARKER", marker?.getTag() as String)
+        startActivity(intent)
         return true
     }
 
