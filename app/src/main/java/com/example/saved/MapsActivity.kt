@@ -31,6 +31,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
+        if (supportActionBar != null)
+            supportActionBar?.hide()
 
         val options = GoogleMapOptions()
         options.compassEnabled(false)

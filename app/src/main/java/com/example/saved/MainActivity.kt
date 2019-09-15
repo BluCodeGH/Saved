@@ -18,19 +18,18 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (supportActionBar != null)
+            supportActionBar?.hide()
     }
 
     fun enter(view: View) {
         var email = findViewById<EditText>(R.id.email).text.toString()
         var password = findViewById<EditText>(R.id.password).text.toString()
 
-        if (auth.currentUser != null) {
-            val randomIntent = Intent(this, MapsActivity::class.java)
-            startActivity(randomIntent)
-
-        } else {
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(baseContext, "Authentication failed.",
                 Toast.LENGTH_SHORT).show()
+            return
         }
 
         auth.signInWithEmailAndPassword(email, password)
