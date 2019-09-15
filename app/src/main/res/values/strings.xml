@@ -2,6 +2,8 @@
     <string name="app_name">Saved</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="app_name1">Spinner</string>
+    <string name="selected_item">Selected item:</string>
     <color name="whitess">#4287f5</color>
 
     <!-- TODO: Remove or change this placeholder text -->

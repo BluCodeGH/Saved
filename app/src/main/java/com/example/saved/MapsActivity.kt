@@ -24,6 +24,14 @@ import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
+import android.support.v7.app.AppCompatActivity
+
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+
+
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
@@ -33,6 +41,29 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         setContentView(R.layout.activity_maps)
         if (supportActionBar != null)
             supportActionBar?.hide()
+        val personNames = arrayOf("Rahul", "Jack", "Rajeev", "Aryan", "Rashmi", "Jaspreet", "Akbar")
+        val spinner = findViewById<Spinner>(R.id.spinner)
+
+//        if (spinner != null) {
+//            val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, personNames)
+//            spinner.adapter = arrayAdapter
+//
+//            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(
+//                    parent: AdapterView<*>,
+//                    view: View,
+//                    position: Int,
+//                    id: Long
+//                ) {
+//                    Toast.makeText(
+//                        this@MapsActivity,
+//                        getString(R.string.selected_item) + " " + personNames[position],
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//
+//            }
+//        }
 
         val options = GoogleMapOptions()
         options.compassEnabled(false)
