@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity() {
             val randomIntent = Intent(this, MapsActivity::class.java)
             startActivity(randomIntent)
 
+        } else {
+            Toast.makeText(baseContext, "Authentication failed.",
+                Toast.LENGTH_SHORT).show()
         }
 
         auth.signInWithEmailAndPassword(email, password)

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/whitess"
-    tools:context=".CreateActivity">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
