@@ -1,5 +1,6 @@
 package com.example.saved.ui.main
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.saved.DonateActivity
 import com.example.saved.R
+import com.example.saved.SubscribeActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -47,20 +50,5 @@ class InfoFragment : Fragment() {
             }
         })
         return view
-    }
-
-    fun donate(view: View) {
-        class transfer() : AsyncTask<Void, Void, String>() {
-            override fun doInBackground(vararg params: Void?): String? {
-                val proj = Project.at("G0mLtXJAP_7fxN-IKCb5IuG1jEBYduM5zgRSdkqXkQk", "ywG25A0hNrO6zFd+Gc2Rf5XONsIx0B+IF92dhFRRQaIB4GX7gqfzLziCh76Rq1Z")
-                val inputs = JSONObject()
-                inputs.put("_to", "0xd06fb1891a51cc3f16cccc289cbf9ce347386809")
-                inputs.put("_value", (500*1e18).toInt().toString(16))
-                val out = proj.post("/transfer", inputs)
-                Log.d("ME", out.toString())
-                return null
-            }
-        }
-        transfer().execute()
     }
 }
