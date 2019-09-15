@@ -39,7 +39,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         setContentView(R.layout.activity_maps)
         if (supportActionBar != null)
             supportActionBar?.hide()
-        val personNames = arrayOf("Rahul", "Jack", "Rajeev", "Aryan", "Rashmi", "Jaspreet", "Akbar")
+        val personNames = arrayOf("+", "Earthquake(Green)", "Explosion(Yellow)", "Fire(Red)", "Floods(Cyan)", "Terrorism(Black)", "Typhoon(Blue)", "Crash(Magenta)")
         val spinner = findViewById<Spinner>(R.id.spinner)
 
         if (spinner != null) {
