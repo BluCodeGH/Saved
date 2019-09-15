@@ -24,8 +24,6 @@ import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-import android.support.v7.app.AppCompatActivity
-
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -44,26 +42,29 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         val personNames = arrayOf("Rahul", "Jack", "Rajeev", "Aryan", "Rashmi", "Jaspreet", "Akbar")
         val spinner = findViewById<Spinner>(R.id.spinner)
 
-//        if (spinner != null) {
-//            val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, personNames)
-//            spinner.adapter = arrayAdapter
-//
-//            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//                override fun onItemSelected(
-//                    parent: AdapterView<*>,
-//                    view: View,
-//                    position: Int,
-//                    id: Long
-//                ) {
-//                    Toast.makeText(
-//                        this@MapsActivity,
-//                        getString(R.string.selected_item) + " " + personNames[position],
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//
-//            }
-//        }
+        if (spinner != null) {
+            val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, personNames)
+            spinner.adapter = arrayAdapter
+
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    Toast.makeText(
+                        this@MapsActivity,
+                        getString(R.string.selected_item) + " " + personNames[position],
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            }
+        }
 
         val options = GoogleMapOptions()
         options.compassEnabled(false)
@@ -116,10 +117,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                     Log.d("ME", type)
 
                     val color = when (type) {
+                        "crash" -> Color.MAGENTA
                         "earthquake" -> Color.GREEN
+                        "explosion" -> Color.YELLOW
                         "fire" -> Color.RED
-                        "hurricane" -> Color.BLUE
-                        "tornado" -> Color.WHITE
+                        "floods" -> Color.CYAN
+                        "terrorism" -> Color.BLACK
+                        "typhoon" -> Color.BLUE
                         else -> Color.BLACK
                     }
 
