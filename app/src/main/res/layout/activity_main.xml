@@ -82,7 +82,7 @@
         android:id="@+id/button"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:onClick="accountCreate"
+        android:onClick="enter"
         android:text="Sign In"
         android:textSize="20sp"
         android:textColor="#ffffff"
@@ -110,13 +110,12 @@
         android:id="@+id/button1"
         android:layout_width="170dp"
         android:layout_height="40dp"
-        android:onClick="accountCreate"
-        android:text="Create Account"
-        android:textSize="15sp"
-        android:textColor="#ffffff"
-        android:background="@drawable/buttonshape"
         android:layout_marginTop="20dp"
-        />
+        android:background="@drawable/buttonshape"
+        android:onClick="createAccount"
+        android:text="Create Account"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
 
 
 </LinearLayout>
